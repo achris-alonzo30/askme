@@ -10,6 +10,7 @@ export const ChatWrapper = ({ sessionId }: { sessionId: string }) => {
     const {
         input,
         messages,
+        setInput,
         handleSubmit,
         handleInputChange,
     } = useChat({
@@ -23,7 +24,12 @@ export const ChatWrapper = ({ sessionId }: { sessionId: string }) => {
             <article className="flex-1 text-black bg-neutral-800 justify-between flex flex-col">
                 <Messages messages={messages} />
             </article>
-            <ChatInput />
+            <ChatInput 
+                input={input}
+                handleInputchange={handleInputChange}
+                handleSubmit={handleSubmit}
+                setInput={setInput}
+            />
 
         </section>
     )

@@ -5,7 +5,12 @@ import { useChat } from "ai/react";
 
 
 export const ChatWrapper = ({ sessionId }: { sessionId: string }) => {
-    const { messages, handleInputChange, input } = useChat({
+    const {
+        input,
+        messages,
+        handleSubmit,
+        handleInputChange,
+    } = useChat({
         api: "/api/chat-stream",
         body: { sessionId }
     });
@@ -16,11 +21,15 @@ export const ChatWrapper = ({ sessionId }: { sessionId: string }) => {
             <article className="flex-1 text-black bg-neutral-800 justify-between flex flex-col">
                 { }
             </article>
-            <input
-                type="text"
-                value={input}
-                onChange={handleInputChange}
-            />
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={input}
+                    onChange={handleInputChange}
+                />
+                <button type="submit">Send</button>
+            </form>
+
         </section>
     )
 }

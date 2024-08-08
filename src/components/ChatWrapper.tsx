@@ -1,6 +1,7 @@
 "use client";
 
 import { useChat } from "ai/react";
+import { Messages } from "./Messages";
 
 
 
@@ -19,7 +20,7 @@ export const ChatWrapper = ({ sessionId }: { sessionId: string }) => {
     return (
         <section className="relative min-h-full bg-neutral-900 divide-y divide-neutral-700 flex justify-between gap-2">
             <article className="flex-1 text-black bg-neutral-800 justify-between flex flex-col">
-                { }
+                <Messages messages={messages} />
             </article>
             <form onSubmit={handleSubmit}>
                 <input

@@ -27,10 +27,15 @@ const UrlPage = async ({ params }: PageProps) => {
     // Checks if the url is already in the history
     const isStored = await redis.sismember("history", filteredParams);
 
+    // Grab the initial messages
+    const initialMessages = await ragChat.history.getMessages({
+        amount: 10,
+        sessionId
+    })
 
     // if not then add the url to the history
     if (!isStored) {
-        const chat = await ragChat.context.add({
+        await ragChat.context.add({
             type: "html",
             source: filteredParams,
             config: {
@@ -45,7 +50,10 @@ const UrlPage = async ({ params }: PageProps) => {
 
 
     return (
-        <ChatWrapper sessionId={sessionId} />
+        <ChatWrapper 
+            sessionId={sessionId} 
+            initialMessages={initialMessages}
+        />
     )
 }
 

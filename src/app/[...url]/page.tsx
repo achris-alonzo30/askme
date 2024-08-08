@@ -1,4 +1,10 @@
-const page = () => {
+
+interface PageProps {
+    params: {
+      url: string | string[] | undefined
+    }
+}
+const UrlPage = ({ params } : PageProps) => {
   return (
     <div>
       
@@ -6,4 +12,4 @@ const page = () => {
   )
 }
 
-export default page
+export default UrlPage

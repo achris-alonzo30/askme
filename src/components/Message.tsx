@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 
 interface MessageProps {
     message: string;
@@ -9,6 +10,8 @@ export const Message = ({
     isUser
 }: MessageProps) => {
     return (
-        <></>
+        <div className={cn("")}>
+
+        </div>
     )
 }

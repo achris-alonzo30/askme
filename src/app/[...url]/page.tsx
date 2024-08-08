@@ -1,6 +1,7 @@
 import { ChatWrapper } from "@/components/ChatWrapper";
 import { ragChat } from "@/lib/rag-chat"
 import { redis } from "@/lib/redis";
+import { cookies } from "next/headers";
 
 interface PageProps {
     params: {
@@ -16,14 +17,16 @@ function reconstructUrl({ url }: { url: string[] }) {
 
 
 const UrlPage = async ({ params }: PageProps) => {
+    const sessionCookie = cookies().get("sessionId")?.value;
     const filteredParams = reconstructUrl({
         url: params.url as string[]
-    })
+    });
+
+    const sessionId = (filteredParams + "--" + sessionCookie).replace(/\//g, "");
 
     // Checks if the url is already in the history
     const isStored = await redis.sismember("history", filteredParams);
 
-    const session = "mock-session";
 
     // if not then add the url to the history
     if (!isStored) {
@@ -42,7 +45,7 @@ const UrlPage = async ({ params }: PageProps) => {
 
 
     return (
-        <ChatWrapper sessionId={session} />
+        <ChatWrapper sessionId={sessionId} />
     )
 }
 

@@ -1,3 +1,4 @@
+import { ChatWrapper } from "@/components/ChatWrapper";
 import { ragChat } from "@/lib/rag-chat"
 import { redis } from "@/lib/redis";
 
@@ -41,7 +42,7 @@ const UrlPage = async ({ params }: PageProps) => {
 
 
     return (
-        <ChatWrapper />
+        <ChatWrapper sessionId={session} />
     )
 }
 

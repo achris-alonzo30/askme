@@ -1,3 +1,4 @@
+import { nextui } from "@nextui-org/react"
 import type { Config } from "tailwindcss"
 
 const config = {
@@ -75,7 +76,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), nextui()],
 } satisfies Config
 
 export default config

@@ -2,6 +2,7 @@
 
 import { useChat } from "ai/react";
 import { Messages } from "./Messages";
+import { ChatInput } from "./ChatInput";
 
 
 
@@ -22,14 +23,7 @@ export const ChatWrapper = ({ sessionId }: { sessionId: string }) => {
             <article className="flex-1 text-black bg-neutral-800 justify-between flex flex-col">
                 <Messages messages={messages} />
             </article>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={input}
-                    onChange={handleInputChange}
-                />
-                <button type="submit">Send</button>
-            </form>
+            <ChatInput />
 
         </section>
     )
